@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bantuan Profesional — Postpartum Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script src="js/guard.js"></script>
+</head>
+
+<body>
+  <div id="app-header"></div>
+
+  <main class="main-content">
+    <section id="tab-bantuan" class="tab-view active">
+      <div class="page-header">
+        <h1 class="page-title">Direktori Bantuan &amp; Konsultasi Profesional</h1>
+        <p class="page-subtitle">Akses langsung ke tenaga profesional terverifikasi: psikolog klinis perinatal, dokter
+          spesialis obstetri, dan bidan konselor laktasi.</p>
+      </div>
+
+      <div class="two-column-layout">
+        <!-- Daftar Tenaga Profesional Kiri -->
+        <div class="panel-card">
+          <h2 class="panel-title">Daftar Tenaga Profesional Berlisensi</h2>
+          <p class="panel-sub">Silakan pilih tenaga profesional untuk melihat jadwal dan melakukan reservasi.</p>
+
+          <div class="pro-list" id="pro-list">
+            <!-- Professional 1 -->
+            <div class="pro-item selected"
+              onclick="selectPro(this, 'Rina Kusuma, M.Psi., Psikolog', 'Psikolog Klinis Perinatal & Trauma Salin', 'Rp 200.000 / sesi')">
+              <div class="pro-avatar"><i class="fa-solid fa-user-tie" aria-hidden="true"></i></div>
+              <div class="pro-info">
+                <div class="pro-top">
+                  <h3 class="pro-name">Rina Kusuma, M.Psi., Psikolog</h3>
+                  <span class="fee-badge">Rp 200.000 / sesi</span>
+                </div>
+                <span class="pro-spec">Psikolog Klinis Perinatal &amp; Manajemen Kecemasan Pascasalin</span>
+                <span class="pro-lic">SIP: 1029/PSI/2020 • Pengalaman 8 Tahun</span>
+                <div class="pro-media-chips">
+                  <span><i class="fa-solid fa-video" aria-hidden="true"></i> Video Call</span>
+                  <span><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> Chat Intensif</span>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-primary"><i class="fa-solid fa-check" aria-hidden="true"></i> Dipilih</button>
+            </div>
+
+            <!-- Professional 2 -->
+            <div class="pro-item"
+              onclick="selectPro(this, 'Bidan Nurul Aisyah, S.Tr.Keb', 'Konselor Laktasi & Pendampingan Nifas', 'Rp 150.000 / sesi')">
+              <div class="pro-avatar"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+              <div class="pro-info">
+                <div class="pro-top">
+                  <h3 class="pro-name">Bidan Nurul Aisyah, S.Tr.Keb</h3>
+                  <span class="fee-badge">Rp 150.000 / sesi</span>
+                </div>
+                <span class="pro-spec">Konselor Laktasi &amp; Perawatan Luka Pemulihan Nifas</span>
+                <span class="pro-lic">KTA IBI: 8841/DKI • Pengalaman 12 Tahun</span>
+                <div class="pro-media-chips">
+                  <span><i class="fa-solid fa-video" aria-hidden="true"></i> Video Call</span>
+                  <span><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> Chat WhatsApp</span>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-outline">Pilih</button>
+            </div>
+
+            <!-- Professional 3 -->
+            <div class="pro-item"
+              onclick="selectPro(this, 'dr. Sarah Anindya, Sp.OG', 'Spesialis Obstetri & Ginekologi', 'Rp 250.000 / sesi')">
+              <div class="pro-avatar"><i class="fa-solid fa-stethoscope" aria-hidden="true"></i></div>
+              <div class="pro-info">
+                <div class="pro-top">
+                  <h3 class="pro-name">dr. Sarah Anindya, Sp.OG</h3>
+                  <span class="fee-badge">Rp 250.000 / sesi</span>
+                </div>
+                <span class="pro-spec">Konsultasi Kesehatan Fisik Reproduksi &amp; Pasca-Operasi</span>
+                <span class="pro-lic">STR: 3121002341 • RSUP Fatmawati</span>
+                <div class="pro-media-chips">
+                  <span><i class="fa-solid fa-video" aria-hidden="true"></i> Video Call</span>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-outline">Pilih</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Pemesanan & Status Kanan -->
+        <div class="panel-card">
+          <h2 class="panel-title">Formulir Permintaan Sesi Konsultasi</h2>
+          <p class="panel-sub">Konfirmasi jadwal dan topik yang ingin didiskusikan.</p>
+
+          <div class="selected-pro-banner" id="chosen-pro-banner">
+            <span class="label">Tenaga Terpilih:</span>
+            <strong id="chosen-pro-name">Rina Kusuma, M.Psi., Psikolog</strong>
+            <span class="sub" id="chosen-pro-spec">Psikolog Klinis Perinatal</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Pilih Tanggal Sesi</label>
+            <input type="date" id="booking-date" class="form-input" value="2026-11-12">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Pilih Jam Konsultasi</label>
+            <div class="time-slots" id="booking-times">
+              <button class="time-chip" onclick="selectTime(this)">10:00 WIB</button>
+              <button class="time-chip active" onclick="selectTime(this)">14:00 WIB</button>
+              <button class="time-chip" onclick="selectTime(this)">16:30 WIB</button>
+              <button class="time-chip" onclick="selectTime(this)">19:30 WIB</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Media Komunikasi</label>
+            <select id="booking-media" class="form-input">
+              <option value="Google Meet (Panggilan Video)">Google Meet (Panggilan Video)</option>
+              <option value="WhatsApp Chat Interaktif">WhatsApp Chat Interaktif</option>
+              <option value="Telepon Langsung">Panggilan Suara / Telepon</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Keluhan atau Topik yang Ingin Disampaikan</label>
+            <textarea id="booking-notes" class="form-textarea"
+              placeholder="Contoh: Merasa sangat cemas setiap kali menjelang malam dan kesulitan membagi waktu istirahat..."></textarea>
+          </div>
+
+          <button class="btn btn-primary btn-block" onclick="submitBooking()">
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Kirim Permintaan Sesi Konsultasi
+          </button>
+
+          <!-- Status Permintaan Sesi Aktif -->
+          <div class="booking-status-section">
+            <h3 class="status-sec-title">Status Permintaan Sesi Terkini</h3>
+            <div class="booking-status-card" id="booking-status-card">
+              <div class="status-top">
+                <span class="status-badge waiting"><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i>
+                  Menunggu Konfirmasi</span>
+                <span class="status-date">12 Nov 2026 • 14:00 WIB</span>
+              </div>
+              <h4 class="status-pro">Rina Kusuma, M.Psi., Psikolog</h4>
+              <p class="status-desc">Media: Google Meet Video Call. Tenaga profesional akan mengonfirmasi sesi dalam
+                waktu maksimal 2 jam.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/bantuan.js"></script>
+</body>
+
+</html>

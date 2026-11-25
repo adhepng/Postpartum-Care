@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masuk — Postpartum Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <script src="js/guard.js"></script>
+</head>
+
+<body>
+  <div id="app-header"></div>
+
+  <main class="main-content">
+    <section id="tab-login" class="tab-view active">
+      <div class="auth-page-container">
+        <!-- Kolom Kiri: Branding & Pesan Empatik -->
+        <div class="auth-brand-card">
+          <div class="hero-badge"><i class="fa-solid fa-spa" aria-hidden="true"></i> Ruang Pendamping Pribadi</div>
+          <h1 class="auth-hero-title">Selamat Datang Kembali,<br>Ibu Hebat.</h1>
+          <p class="auth-hero-desc">
+            Masa pascapersalinan adalah perjalanan berharga. Masuk ke akunmu untuk melanjutkan pencatatan suasana hati,
+            menulis curahan jurnal, dan mengakses panduan pemulihan harian.
+          </p>
+
+          <div class="auth-quote-card">
+            <p class="auth-quote-text">
+              “Ibu tidak perlu menjadi sempurna untuk menjadi ibu yang luar biasa bagi si kecil. Rawatlah dirimu
+              sebagaimana engkau merawat buah hatimu.”
+            </p>
+            <span class="auth-quote-author">— Komunitas Postpartum Care</span>
+          </div>
+
+          <div class="auth-trust-list">
+            <div class="trust-item">
+              <span class="trust-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></span>
+              <span>Data jurnal refleksi dan mood <strong>100% tersimpan privat</strong></span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></span>
+              <span>Seluruh informasi edukasi <strong>ditinjau oleh tenaga medis</strong></span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+              <span>Kepatuhan penuh pada UU Pelindungan Data Pribadi</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Formulir Login -->
+        <div class="auth-form-card">
+          <div class="auth-form-header">
+            <h2 class="auth-title">Masuk ke Akun Anda</h2>
+            <p class="auth-subtitle">Pilih peran akun dan masukkan kredensial terdaftar.</p>
+          </div>
+
+          <div class="role-selector-tabs">
+            <button class="role-tab active" data-role="ibu" onclick="selectLoginRole('ibu')">
+              <i class="fa-solid fa-baby" aria-hidden="true"></i> Ibu Pascasalin
+            </button>
+            <button class="role-tab" data-role="pro" onclick="selectLoginRole('pro')">
+              <i class="fa-solid fa-user-doctor" aria-hidden="true"></i> Tenaga Medis
+            </button>
+            <button class="role-tab" data-role="admin" onclick="selectLoginRole('admin')">
+              <i class="fa-solid fa-gear" aria-hidden="true"></i> Admin
+            </button>
+          </div>
+
+          <form onsubmit="handleLoginSubmit(event)">
+            <div class="form-group">
+              <label class="form-label">Alamat Email</label>
+              <input type="email" id="login-email" class="form-input" placeholder="nama@email.com"
+                value="ibu.rani@postpartum.id" required>
+            </div>
+
+            <div class="form-group">
+              <div class="label-with-link">
+                <label class="form-label" style="margin-bottom: 0;">Kata Sandi</label>
+                <a href="javascript:void(0)" class="form-link-subtle"
+                  onclick="showToast('Fitur reset kata sandi dikirimkan ke email terdaftar.')">Lupa kata sandi?</a>
+              </div>
+              <input type="password" id="login-password" class="form-input" placeholder="Masukkan kata sandi..."
+                value="password123" required>
+            </div>
+
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="login-remember" checked>
+                <span>Ingat saya di perangkat desktop ini</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block auth-submit-btn">
+              Masuk ke Akun Sekarang <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+          </form>
+
+          <div class="auth-switch-text">
+            Belum memiliki akun Postpartum Care?
+            <a class="btn-text-highlight" href="register.html">Daftar Akun Baru</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+
+</html>

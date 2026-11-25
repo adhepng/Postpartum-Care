@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar — Postpartum Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <script src="js/guard.js"></script>
+</head>
+
+<body>
+  <div id="app-header"></div>
+
+  <main class="main-content">
+    <section id="tab-register" class="tab-view active">
+      <div class="auth-page-container">
+        <!-- Kolom Kiri: Manfaat Bergabung -->
+        <div class="auth-brand-card">
+          <div class="hero-badge"><i class="fa-solid fa-spa" aria-hidden="true"></i> Mulai Langkah Pertama</div>
+          <h1 class="auth-hero-title">Daftar Akun<br>Postpartum Care</h1>
+          <p class="auth-hero-desc">
+            Bergabunglah untuk mendapatkan sarana pendampingan harian yang memprioritaskan pemulihan fisik dan
+            kesejahteraan mental Ibu.
+          </p>
+
+          <div class="register-benefits">
+            <div class="benefit-card">
+              <div class="benefit-icon"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></div>
+              <div class="benefit-info">
+                <h4>Mood Check-In &amp; Tren Emosi</h4>
+                <p>Identifikasi faktor pemicu kelelahan harian dan pantau grafik pemulihan.</p>
+              </div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></div>
+              <div class="benefit-info">
+                <h4>Daily Journal Pribadi</h4>
+                <p>Curahkan perasaan secara privat dengan tag emosi tanpa takut dihakimi.</p>
+              </div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon"><i class="fa-solid fa-headphones" aria-hidden="true"></i></div>
+              <div class="benefit-info">
+                <h4>Micro-Relaxation 3 Menit</h4>
+                <p>Latihan pernapasan sederhana yang ramah waktu bagi ibu menyusui.</p>
+              </div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></div>
+              <div class="benefit-info">
+                <h4>Akses Konsultasi Terverifikasi</h4>
+                <p>Kemudahan reservasi sesi dengan psikolog perinatal dan bidan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Formulir Pendaftaran -->
+        <div class="auth-form-card">
+          <div class="auth-form-header">
+            <h2 class="auth-title">Buat Akun Baru</h2>
+            <p class="auth-subtitle">Lengkapi formulir di bawah ini untuk memulai.</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Daftar Sebagai:</label>
+            <div class="role-selector-tabs">
+              <button class="role-tab active" id="reg-role-ibu" onclick="selectRegRole('ibu')">
+                <i class="fa-solid fa-baby" aria-hidden="true"></i> Ibu Pascasalin (Utama)
+              </button>
+              <button class="role-tab" id="reg-role-pro" onclick="selectRegRole('pro')">
+                <i class="fa-solid fa-user-doctor" aria-hidden="true"></i> Tenaga Profesional
+              </button>
+            </div>
+          </div>
+
+          <form onsubmit="handleRegisterSubmit(event)">
+            <div class="form-group">
+              <label class="form-label">Nama Lengkap</label>
+              <input type="text" id="reg-name" class="form-input" placeholder="Masukkan nama lengkap Anda..."
+                value="Rani Anindita" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Alamat Email</label>
+              <input type="email" id="reg-email" class="form-input" placeholder="nama@email.com"
+                value="rani.anindita@email.com" required>
+            </div>
+
+            <div class="form-group" id="group-tgl-persalinan">
+              <label class="form-label">
+                Tanggal Persalinan / Kelahiran Bayi
+                <span class="label-hint">(Untuk menghitung fase pemulihan harian Ibu)</span>
+              </label>
+              <input type="date" id="reg-birth-date" class="form-input" value="2026-10-30" required>
+            </div>
+
+            <div class="form-group" id="group-spesialisasi" style="display: none;">
+              <label class="form-label">Spesialisasi &amp; Gelar Profesi</label>
+              <input type="text" id="reg-specialization" class="form-input"
+                placeholder="Contoh: Psikolog Klinis Perinatal / Bidan Konselor Laktasi">
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Kata Sandi</label>
+                <input type="password" id="reg-password" class="form-input" placeholder="Minimal 8 karakter..."
+                  value="password123" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Ulangi Kata Sandi</label>
+                <input type="password" id="reg-password-confirm" class="form-input" placeholder="Ulangi kata sandi..."
+                  value="password123" required>
+              </div>
+            </div>
+
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="reg-agree" checked required>
+                <span>Saya menyetujui <a href="javascript:void(0)" class="form-link-subtle">Syarat &amp;
+                    Ketentuan</a> serta <a href="javascript:void(0)" class="form-link-subtle">Kebijakan Privasi</a>
+                  platform Postpartum Care.</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block auth-submit-btn">
+              Daftar Akun Baru Sekarang <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+          </form>
+
+          <div class="auth-switch-text">
+            Sudah memiliki akun?
+            <a class="btn-text-highlight" href="login.html">Masuk di Sini</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+
+</html>

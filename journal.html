@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Journal — Postpartum Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script src="js/guard.js"></script>
+</head>
+
+<body>
+  <div id="app-header"></div>
+
+  <main class="main-content">
+    <section id="tab-journal" class="tab-view active">
+      <div class="page-header">
+        <h1 class="page-title">Daily Journal (Ruang Curahan Hati Privat)</h1>
+        <p class="page-subtitle">Tempat yang sepenuhnya aman dan tertutup untuk mengekspresikan segala bentuk rasa
+          lelah, haru, maupun cemas tanpa takut dihakimi.</p>
+      </div>
+
+      <div class="two-column-layout">
+        <!-- Editor Jurnal Kiri -->
+        <div class="panel-card">
+          <div class="lock-indicator">
+            <span><i class="fa-solid fa-lock" aria-hidden="true"></i> Terenkripsi &amp; Hanya Dapat Dilihat oleh
+              <span id="journal-lock-user">Ibu Rani</span></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Judul Refleksi</label>
+            <input type="text" id="journal-title" class="form-input"
+              placeholder="Beri judul catatanmu hari ini (misal: Menangis sejenak lalu merasa lega)..."
+              value="Hari ke-12: Belajar melepaskan ekspektasi menjadi ibu sempurna">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Pilih Tag Perasaan</label>
+            <div class="tag-selector" id="journal-tags">
+              <button class="tag-chip active" onclick="toggleChip(this)">#lelah</button>
+              <button class="tag-chip active" onclick="toggleChip(this)">#bersyukur</button>
+              <button class="tag-chip" onclick="toggleChip(this)">#cemas</button>
+              <button class="tag-chip active" onclick="toggleChip(this)">#sayangBayi</button>
+              <button class="tag-chip" onclick="toggleChip(this)">#kewalahan</button>
+              <button class="tag-chip active" onclick="toggleChip(this)">#butuhJeda</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Isi Curahan Hati</label>
+            <textarea id="journal-body" class="form-textarea large"
+              placeholder="Tuliskan apa saja yang mengganjal atau membuatmu terharu hari ini...">Hari ini tubuh terasa begitu lelah, tapi ketika melihat senyum kecil si bayi saat digendong, ada rasa hangat yang susah dijelaskan.
+
+Terkadang aku merasa bersalah saat ingin beristirahat sejenak dan menyerahkan bayi ke suami, tapi aku perlahan belajar bahwa ibu yang bahagia dan cukup istirahat adalah yang terbaik untuk bayi.
+
+Hari ini aku berhasil makan siang tepat waktu dan melakukan relaksasi napas 3 menit. Kemajuan kecil yang patut dirayakan.</textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Voice Note (Opsional)</label>
+            <div class="voice-note-box" id="voice-note-box">
+              <div class="vn-controls">
+                <button type="button" class="btn-vn-record" id="vn-record-btn" onclick="toggleRecording()">
+                  <i class="fa-solid fa-microphone" aria-hidden="true"></i> Mulai Rekam
+                </button>
+                <div class="vn-recording" id="vn-recording" hidden>
+                  <span class="vn-dot"></span>
+                  <span>Merekam...</span>
+                  <span class="vn-timer" id="vn-timer">00:00</span>
+                </div>
+              </div>
+              <p class="vn-hint">Boleh isi teks saja, VN saja, atau keduanya. Rekaman tersimpan privat di perangkat ini.
+              </p>
+              <div class="vn-preview-wrap" id="vn-preview-wrap" hidden>
+                <audio id="vn-preview" class="vn-preview" controls></audio>
+                <div class="vn-preview-actions">
+                  <button type="button" class="j-act-btn" onclick="startRecording()"><i
+                      class="fa-solid fa-rotate-right" aria-hidden="true"></i> Rekam Ulang</button>
+                  <button type="button" class="j-act-btn delete" onclick="clearVoiceNote()"><i
+                      class="fa-solid fa-trash-can" aria-hidden="true"></i> Hapus VN</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="saveJournalEntry()">
+              <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i> Simpan ke Jurnal Pribadi
+            </button>
+            <button class="btn btn-outline" onclick="requestResetJournalForm()">
+              Batal / Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- Daftar Jurnal Kanan -->
+        <div class="panel-card">
+          <div class="panel-header-row">
+            <h2 class="panel-title">Daftar Jurnal Tersimpan</h2>
+            <span class="badge-count" id="journal-count">3 Catatan</span>
+          </div>
+
+          <div class="search-box-mini">
+            <input type="text" class="form-input" placeholder="Cari catatan atau tag perasaan..."
+              onkeyup="filterJournal(this.value)">
+          </div>
+
+          <div class="journal-feed" id="journal-feed"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/journal.js"></script>
+</body>
+
+</html>

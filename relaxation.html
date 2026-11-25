@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Micro-Relaxation — Postpartum Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script src="js/guard.js"></script>
+</head>
+
+<body>
+  <div id="app-header"></div>
+
+  <main class="main-content">
+    <section id="tab-relaxation" class="tab-view active">
+      <div class="page-header center">
+        <h1 class="page-title">Micro-Relaxation: Jeda 3 Menit Ibu</h1>
+        <p class="page-subtitle">Dirancang khusus untuk ibu pascapersalinan: singkat, mudah dilakukan di mana saja saat
+          bayi tidur atau sedang menyusui.</p>
+      </div>
+
+      <!-- Main Audio & Breathing Guide Player -->
+      <div class="relaxation-box">
+        <div class="relax-header">
+          <span class="badge-pill">Sesi Terpilih</span>
+          <h2 class="relax-title" id="relax-track-title">Pernapasan Tenang &amp; Pelepasan Beban Pundak</h2>
+          <p class="relax-meta">Audio panduan suara lembut dengan instrumen alam pengantar relaksasi</p>
+        </div>
+
+        <!-- Breathing Interactive Circle -->
+        <div class="breathing-container">
+          <div class="breathing-circle-outer" id="breath-circle">
+            <div class="breathing-circle-inner">
+              <span class="breath-action" id="breath-text">Tarik Napas</span>
+              <span class="breath-timer" id="breath-count">4 Detik</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Audio Timer & Progress Bar -->
+        <div class="player-controls-container">
+          <div class="time-readout">
+            <span id="player-current-time">00:00</span>
+            <span class="time-divider">/</span>
+            <span id="player-total-time">03:00</span>
+          </div>
+
+          <div class="progress-bar-bg" onclick="seekAudio(event)">
+            <div class="progress-bar-fill" id="player-progress"></div>
+          </div>
+
+          <div class="media-buttons">
+            <button class="btn-ctrl" onclick="rewindAudio(10)" title="Mundur 10 detik">
+              <i class="fa-solid fa-rotate-left" aria-hidden="true"></i> 10s
+            </button>
+            <button class="btn-ctrl-play" id="btn-play-pause" onclick="togglePlayAudio()" title="Putar">
+              <span id="play-icon"><i class="fa-solid fa-play" aria-hidden="true"></i></span>
+            </button>
+            <button class="btn-ctrl" onclick="stopAudio()" title="Hentikan audio">
+              <i class="fa-solid fa-stop" aria-hidden="true"></i> Stop
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other 3-Minute Modules -->
+      <h2 class="section-title" style="margin-top: 40px;">Pilihan Sesi Relaksasi 3 Menit Lainnya</h2>
+      <div class="sessions-grid">
+        <div class="session-card active-session" onclick="selectSession('Pernapasan Tenang & Pelepasan Beban Pundak')">
+          <div class="session-badge">Sesi 1 • 3 Menit</div>
+          <h3 class="session-title">Pernapasan Tenang &amp; Beban Pundak</h3>
+          <p class="session-desc">Fokus melepaskan ketegangan di area leher dan bahu akibat posisi menggendong.</p>
+          <span class="session-action"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Sedang Dipilih</span>
+        </div>
+
+        <div class="session-card" onclick="selectSession('Afirmasi Kebaikan Diri Ibu Baru')">
+          <div class="session-badge">Sesi 2 • 3 Menit</div>
+          <h3 class="session-title">Afirmasi Kebaikan Diri Ibu Baru</h3>
+          <p class="session-desc">Kalimat penerimaan diri dan afirmasi hangat untuk meredakan rasa bersalah.</p>
+          <span class="session-action"><i class="fa-solid fa-play" aria-hidden="true"></i> Putar Sesi Ini</span>
+        </div>
+
+        <div class="session-card" onclick="selectSession('Relaksasi Sebelum Tidur Singkat (Power Nap)')">
+          <div class="session-badge">Sesi 3 • 3 Menit</div>
+          <h3 class="session-title">Relaksasi Menjelang Power Nap</h3>
+          <p class="session-desc">Menurunkan frekuensi gelombang otak agar tidur 30 menit terasa sangat menyegarkan.</p>
+          <span class="session-action"><i class="fa-solid fa-play" aria-hidden="true"></i> Putar Sesi Ini</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/relaxation.js"></script>
+</body>
+
+</html>
